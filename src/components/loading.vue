@@ -14,6 +14,12 @@
 import { defineEmits, defineProps, ref } from "vue";
 import getSrc from "@/utils/getSrc.js";
 import { loadImageEnd } from "@/utils/loadImageEnd.js";
+const props = defineProps({
+  change: {
+    type: Boolean,
+    default: true,
+  },
+});
 
 const isLoading = ref(true);
 const defaultNum = ref(1);
@@ -21,25 +27,29 @@ const num = ref(0);
 const onoff = ref(true);
 
 const clickHandle = (p) => {
-  let imgArr = [getSrc("logo.png")];
-  loadImageEnd(imgArr, (i) => {
-    let ld = setInterval(() => {
-      num.value += defaultNum.value;
-      if (num.value >= 100) {
-        clearInterval(ld);
-        onoff.value = false;
-        setTimeout(() => {
-          isLoading.value = false;
-        }, 100);
-      }
-    }, Math.random() * 30 + 20);
-  });
+  if (!props.change == true) {
+    onoff.value = false;
+    return false;
+  } else {
+    let imgArr = [getSrc("logo.png")];
+    loadImageEnd(imgArr, (i) => {
+      let ld = setInterval(() => {
+        num.value += defaultNum.value;
+        if (num.value >= 100) {
+          clearInterval(ld);
+          onoff.value = false;
+          setTimeout(() => {
+            isLoading.value = false;
+          }, 100);
+        }
+      }, Math.random() * 30 + 20);
+    });
+  }
 };
 clickHandle();
 
 defineExpose({
   onoff,
- 
 });
 </script>
 
