@@ -111,10 +111,12 @@ onMounted(() => {
 .homeWrap {
   .main {
     .home_title {
+      margin-top: 120px;
       width: 430px;
       height: 131px;
     }
     .happyBox {
+      margin-top: 90px;
       width: 100%;
       display: flex;
       justify-content: flex-end;

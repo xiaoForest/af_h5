@@ -139,10 +139,12 @@ ul {
 		z-index: 2;
 		display: flex;
 		align-items: center;
-		justify-content: space-around;
+		justify-content: center;
 		flex-direction: column;
 		.logoBox {
-			width: 100%;
+			position: fixed;
+			top: 90px;
+			left: 50px;
 			display: flex;
 			.logo {
 				width: 210px;

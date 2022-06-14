@@ -39,11 +39,7 @@ const q = ''//'?debug=1&openid=o-WGWwrmdn9Wf1VwdfumyG6oB4Eo'
 export function getMyInfo() {
     return http.get(`${resquest}wxh5/Index/getMyInfo${q}`)
 }
-//抽奖接口
-export function getPrize() {
-    return http.get(`${resquest}wxh5/Index/getPrize${q}`)
-}
-
+ 
 //获得签名JS
 export function getShareSignPackage(params) {
     return http.get(`${resquest}/wxh5/Index/getShareSignPackage${q}`, {
@@ -51,10 +47,4 @@ export function getShareSignPackage(params) {
     })
 }
 
-
-//中奖信息登记接口
-export function saveDrawInfo(params) {
-    return http.get(`${resquest}/wxh5/Index/saveDrawInfo${q}`, {
-        ...params
-    })
-}
+ 
