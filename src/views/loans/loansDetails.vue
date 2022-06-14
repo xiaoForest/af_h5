@@ -2,7 +2,7 @@
 <template>
   <section class="depositeWrap container">
     <img class="bg" :src="getSrc('deposite_details.jpg')" alt="" />
-    <GuideFloat :pathName="'/deposite/deposite'" />
+    <GuideFloat :pathName="'/loans/loans'" />
     <div class="main">
       <div class="logoBox">
         <img class="logo" :src="getSrc('logo_white.png')" alt="" />

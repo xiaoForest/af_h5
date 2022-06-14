@@ -1,7 +1,7 @@
 
 <template>
   <section class="depositeWrap container">
-    <img class="bg" :src="getSrc('deposite_bg.jpg')" alt="" />
+    <img class="bg" :src="getSrc('employment_bg.jpg')" alt="" />
     <GuideFloat :pathName="'/'" />
     <div class="main">
       <div class="logoBox">
@@ -10,7 +10,7 @@
       <div class="middleBox">
         <ul class="buttonList">
           <li
-            class="item"
+            class="item mb60"
             v-for="(item, index) in list"
             :key="index"
             @click="goToSecondary(item)"
@@ -37,18 +37,18 @@ const loadingChange = ref(true);
 const list = ref([
   {
     id: "1",
-    name: "我是个人缴存",
+    name: "我要缴存",
   },
   {
     id: "2",
-    name: "我是单位缴存职工",
+    name: "我要贷款",
   },
 ]);
 
 const goToSecondary = (item) => {
-  if (item.name == "我是个人缴存") {
+  if (item.name == "我要缴存") {
     router.push({
-      path: "/deposite/depositeDetails",
+      path: "/employment/employmentDetails",
       query: {
         id: item.id,
       },

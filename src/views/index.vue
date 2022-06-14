@@ -88,6 +88,38 @@ const goToSecondary = (item) => {
       },
     });
   }
+  if (item.name == "提取") {
+    router.push({
+      path: "/withdrawals/withdrawals",
+      query: {
+        id: item.id,
+      },
+    });
+  }
+  if (item.name == "贷款") {
+    router.push({
+      path: "/loans/loans",
+      query: {
+        id: item.id,
+      },
+    });
+  }
+  if (item.name == "灵活就业人员专区") {
+    router.push({
+      path: "/employment/employment",
+      query: {
+        id: item.id,
+      },
+    });
+  }
+  if (item.name == "网点地址查询") {
+    router.push({
+      path: "/network/networkDetails",
+      query: {
+        id: item.id,
+      },
+    });
+  }
 };
 
 onMounted(() => {

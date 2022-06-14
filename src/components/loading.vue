@@ -31,7 +31,23 @@ const clickHandle = (p) => {
     onoff.value = false;
     return false;
   } else {
-    let imgArr = [getSrc("logo.png")];
+    let imgArr = [
+      getSrc("logo.png"),
+      getSrc("deposite_bg.jpg"),
+      getSrc("deposite_details.jpg"),
+      getSrc("employment_bg.jpg"),
+      getSrc("feel_happy.png"),
+      getSrc("home.png"),
+      getSrc("home_0.jpg"),
+      getSrc("home_title.png"),
+      getSrc("loading.png"),
+      getSrc("loans_bg.jpg"),
+      getSrc("logo_white.png"),
+      getSrc("return.png"),
+      getSrc("withdrawals_bg.jpg"),
+      getSrc("withdrawals1_bg.jpg"),
+      getSrc("withdrawals2_bg.jpg")
+    ];
     loadImageEnd(imgArr, (i) => {
       let ld = setInterval(() => {
         num.value += defaultNum.value;

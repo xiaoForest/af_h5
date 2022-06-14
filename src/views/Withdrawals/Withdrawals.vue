@@ -1,7 +1,7 @@
 
 <template>
   <section class="depositeWrap container">
-    <img class="bg" :src="getSrc('deposite_bg.jpg')" alt="" />
+    <img class="bg" :src="getSrc('withdrawals_bg.jpg')" alt="" />
     <GuideFloat :pathName="'/'" />
     <div class="main">
       <div class="logoBox">
@@ -37,18 +37,18 @@ const loadingChange = ref(true);
 const list = ref([
   {
     id: "1",
-    name: "我是个人缴存",
+    name: "住房消费提取公积金",
   },
   {
     id: "2",
-    name: "我是单位缴存职工",
+    name: "非住房消费提取公积金",
   },
 ]);
 
 const goToSecondary = (item) => {
-  if (item.name == "我是个人缴存") {
+  if (item.name == "住房消费提取公积金") {
     router.push({
-      path: "/deposite/details",
+      path: "/withdrawals/withdrawals1",
       query: {
         id: item.id,
       },
@@ -60,6 +60,5 @@ onMounted(() => {});
 </script>
 
 <style lang="scss">
-.depositeWrap {
-}
+ 
 </style>
