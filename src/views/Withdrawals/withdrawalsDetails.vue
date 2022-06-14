@@ -36,6 +36,5 @@ onMounted(() => {});
 </script>
 
 <style lang="scss">
-.depositeWrap {
-}
+
 </style>

@@ -32,19 +32,19 @@ function getTime() {
 //     return http.post(`${resquest}api/index/getInfo?id=${id}`)
 // }
 // https://wxh5.xhwxpos.com/czyh35th/wxh5/Index/getMyInfo?debug=1&openid=o-WGWwrmdn9Wf1VwdfumyG6oB4Eo
-const resquest = "https://wxh5.xhwxpos.com/czyh35th/"
-const q = ''//'?debug=1&openid=o-WGWwrmdn9Wf1VwdfumyG6oB4Eo'
+// const resquest = "https://wxh5.xhwxpos.com/czyh35th/"
+// const q = ''//'?debug=1&openid=o-WGWwrmdn9Wf1VwdfumyG6oB4Eo'
 
-//获取我的信息接口
-export function getMyInfo() {
-    return http.get(`${resquest}wxh5/Index/getMyInfo${q}`)
-}
+// //获取我的信息接口
+// export function getMyInfo() {
+//     return http.get(`${resquest}wxh5/Index/getMyInfo${q}`)
+// }
  
-//获得签名JS
-export function getShareSignPackage(params) {
-    return http.get(`${resquest}/wxh5/Index/getShareSignPackage${q}`, {
-        ...params
-    })
-}
+// //获得签名JS
+// export function getShareSignPackage(params) {
+//     return http.get(`${resquest}/wxh5/Index/getShareSignPackage${q}`, {
+//         ...params
+//     })
+// }
 
  

@@ -5,7 +5,7 @@ import {
 import Index from '@/views/index'
 import Deposite from '@/views/deposite/deposite'
 import DepositeDetails from '@/views/deposite/depositeDetails'
-import Withdrawals from '@/views/withdrawals/withdrawals'
+import Withdrawals from  '@/views/withdrawals/withdrawals'
 import Withdrawals1 from '@/views/withdrawals/withdrawals1'
 import Withdrawals2 from '@/views/withdrawals/withdrawals2'
 import WithdrawalsDetails from '@/views/withdrawals/withdrawalsDetails'
@@ -17,7 +17,7 @@ import NetworkDetails from '@/views/network/networkDetails'
 const Router = createRouter({
     history: createWebHashHistory(),
     routes: [{
-            path: '',
+            path: '/',
             name: 'index',
             component: Index
         },
