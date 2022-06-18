@@ -22,7 +22,7 @@ function getTime() {
     return time;
 }
 
-// const resquest = "https://young.yuezhengwl.com/"
+const resquest = "https://gzgjj.xhwxpos.com/"
 
 // export function getList() {
 //     return http.get(`${resquest}api/index/getList`)
@@ -35,10 +35,7 @@ function getTime() {
 // const resquest = "https://wxh5.xhwxpos.com/czyh35th/"
 // const q = ''//'?debug=1&openid=o-WGWwrmdn9Wf1VwdfumyG6oB4Eo'
 
-// //获取我的信息接口
-// export function getMyInfo() {
-//     return http.get(`${resquest}wxh5/Index/getMyInfo${q}`)
-// }
+
  
 // //获得签名JS
 // export function getShareSignPackage(params) {
@@ -46,5 +43,8 @@ function getTime() {
 //         ...params
 //     })
 // }
-
+ 
+export function getIndexPage() {
+    return http.get(`${resquest}page/getIndexPage`)
+}
  

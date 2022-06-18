@@ -11,7 +11,7 @@
   </div>
 </template>
 <script setup>
-import { defineEmits, defineProps, ref } from "vue";
+import { ref } from "vue";
 import getSrc from "@/utils/getSrc.js";
 import { loadImageEnd } from "@/utils/loadImageEnd.js";
 const props = defineProps({
@@ -46,7 +46,7 @@ const clickHandle = (p) => {
       getSrc("return.png"),
       getSrc("withdrawals_bg.jpg"),
       getSrc("withdrawals1_bg.jpg"),
-      getSrc("withdrawals2_bg.jpg")
+      getSrc("withdrawals2_bg.jpg"),
     ];
     loadImageEnd(imgArr, (i) => {
       let ld = setInterval(() => {

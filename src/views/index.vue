@@ -49,6 +49,7 @@
 import { reactive, ref, onMounted, watch } from "vue";
 import Loading from "@/components/loading.vue";
 import getSrc from "@/utils/getSrc.js";
+import { getIndexPage } from "@/api/api.js";
 import { Toast } from "vant";
 import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
@@ -122,7 +123,15 @@ const goToSecondary = (item) => {
   }
 };
 
-onMounted(() => {
+onMounted(async () => {
+  await getIndexPage()
+    .then((result) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log("失败了" + err);
+    });
+
   console.log(route.query.two);
   if (route.query.two) {
     onoffLoading.value = false;

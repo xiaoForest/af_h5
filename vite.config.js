@@ -32,6 +32,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
       'views': '@/views',
       'assets': '@/assets',
+      'api': '@/api',
       'common': '@/common',
       'components': '@components',
       'network': '@/network',

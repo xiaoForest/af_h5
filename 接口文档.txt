@@ -1,0 +1,143 @@
+首页
+/page/getIndexPage 获取首页信息
+{
+	"status": 0,
+	"msg": "请求成功",
+	"data": {
+		"bgImage": "xxx",
+		"sceneType": "IndexPage",
+		"pageData ": [{
+			"typeId": "",
+			"typeName": "",
+			"sceneType": "SecondPage",
+			"typeImg": ""
+		}, {
+			"typeId": "",
+			"typeName": "",
+			"sceneType": "InfoPage",
+			"typeImg": ""
+		}]
+
+	}
+}
+
+bgImage 背景图片
+sceneType 场景类型 IndexPage首页  SecondPage次级首页  InfoPage信息页
+pageData 列表菜单信息
+typeId 菜单id
+typeName 菜单名
+typeImg 菜单图片
+
+
+
+次级首页
+/page/getPageInfo 获取具体类型信息页面 入参 typeId
+{
+	"status": 0,
+	"msg": "请求成功",
+	"data": {
+		"bgImage": "",
+		"sceneType": "SecondPage",
+		"pageData": [{
+			"typeId": "",
+			"typeName": "",
+			"sceneType": "SecondPage",
+			"typeImg": ""
+		}, {
+			"typeId": "",
+			"typeName": "",
+			"sceneType": "InfoPage",
+			"typeImg": ""
+		}]
+	}
+}
+
+bgImage 背景图片
+sceneType 场景类型 IndexPage首页  SecondPage次级首页  InfoPage信息页
+pageData 列表菜单信息
+typeId 菜单id
+typeName 菜单名
+typeImg 菜单图片
+
+
+
+信息页面 
+/page/getPageInfo 获取具体类型信息页面 入参 typeId
+{
+	"status": 0,
+	"msg": "请求成功",
+	"data": {
+		"bgImage": "",
+		"sceneType": "InfoPage",
+		"typeId": "",
+		"typeName": "xxx",
+		"typeDesc": "xxxx",
+		"typeImg": "",
+		"subType": [{
+			"typeName": "xxxA",
+			"typeDesc": "xxxx",
+			"subTitle": [{
+				"titleName": "xxxxx1",
+				"titleInfo": "xxxxxx1"
+			}, {
+				"titleName": "xxxxx2",
+				"titleInfo": "xxxxxx2"
+			}]
+		}, {
+			"typeName": "xxxB",
+			"typeDesc": "xxxx",
+			"subTitle": [{
+				"titleName": "xxxxx3",
+				"titleInfo": "xxxxxx3"
+			}, {
+				"titleName": "xxxxx4",
+				"titleInfo": "xxxxxx4"
+			}]
+		}]
+	}
+}
+
+针对不同页面存在为空情况，如部分页面typeDesc为空、subType.typeName为空等情况
+
+bgImage 背景图片
+sceneType 场景类型 IndexPage首页  SecondPage次级首页  InfoPage信息页
+typeId 菜单id
+typeName 菜单名
+typeImg 菜单图片
+typeDesc 本页面类型描述
+subType 子类型列表
+subType.typeName 本页面子类型名
+subType.typeDesc 本页面子类型描述
+subType.subTitle 本页面子类型标题列表
+subType.subTitle.titleName 子类型标题名
+subType.subTitle.titleInfo 子类型标题信息
+
+
+
+
+获取分享签名
+
+/server/getShareSignature
+入参：currentUrl 当前页面url
+出参：	rawString 请求整体数据
+		appId 		appid
+		url 		地址
+		signature   签名
+		noncestr  随机字符串
+		timestamp  时间戳
+
+{
+	"status": "0",
+	"msg": "OK",
+	"data": {
+		"signPackage": {
+			"appId": "xxx",
+			"signature": "xxx",
+			"noncestr": "xxx",
+			"timestamp": "xxx",
+			"url": "xxx",
+			"rawString": "xxx"
+		}
+	}
+}
+

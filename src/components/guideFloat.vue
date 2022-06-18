@@ -5,7 +5,7 @@
   </div>
 </template>
 <script setup>
-import { defineEmits, defineProps, ref } from "vue";
+import {  ref } from "vue";
 import getSrc from "@/utils/getSrc.js";
 import { useRouter } from "vue-router";
 const router = useRouter();
