@@ -22,7 +22,7 @@ function getTime() {
     return time;
 }
 
-const resquest = "https://gzgjj.xhwxpos.com/"
+const resquest = "http://gzgjj.xhwxpos.com:8002/"
 
 // export function getList() {
 //     return http.get(`${resquest}api/index/getList`)
