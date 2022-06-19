@@ -11,7 +11,7 @@
     class="homeWrap container animate__animated"
     :class="loadingChange ? '' : 'animate__slideInRight'"
   >
-    <img class="bg" :src="getSrc('home_0.jpg')" alt="" />
+    <img class="bg" :src="DATA.bgImage || getSrc('home_0.jpg')" alt="" />
     <div class="main">
       <div
         class="logoBox animate__animated animate__fadeInUp animate__delay-05s"
@@ -24,12 +24,12 @@
         <img class="home_title" :src="getSrc('home_title.png')" />
         <ul class="buttonList">
           <li
-            v-for="(item, index) in list"
+            v-for="(item, index) in DATA.pageData"
             :key="index"
-            @click="goToSecondary(item)"
+            @click="goToSecondary(item, item.typeName)"
           >
             <div>
-              <span>{{ item.name }}</span>
+              <span>{{ item.typeName }}</span>
             </div>
           </li>
         </ul>
@@ -57,6 +57,7 @@ const route = useRoute();
 const sonRef = ref();
 const loadingChange = ref(true);
 const onoffLoading = ref(true);
+const DATA = ref([]);
 const list = ref([
   {
     id: "1",
@@ -80,58 +81,63 @@ const list = ref([
   },
 ]);
 
-const goToSecondary = (item) => {
-  if (item.name == "缴存") {
+const goToSecondary = (item, name) => {
+  if (item.typeId == "jiaocun") {
     router.push({
       path: "/deposite/deposite",
       query: {
-        id: item.id,
+        id: item.typeId,
       },
     });
   }
-  if (item.name == "提取") {
+  if (item.typeId == "tiqu") {
     router.push({
       path: "/withdrawals/withdrawals",
       query: {
-        id: item.id,
+        id: item.typeId,
       },
     });
   }
-  if (item.name == "贷款") {
+  if (item.typeId == "daikuan") {
     router.push({
       path: "/loans/loans",
       query: {
-        id: item.id,
+        id: item.typeId,
       },
     });
   }
-  if (item.name == "灵活就业人员专区") {
+  if (item.typeId == "jiuye") {
     router.push({
       path: "/employment/employment",
       query: {
-        id: item.id,
+        id: item.typeId,
       },
     });
   }
-  if (item.name == "网点地址查询") {
+  if (item.typeId == "dizhi") {
     router.push({
       path: "/network/networkDetails",
       query: {
-        id: item.id,
+        id: item.typeId,
       },
     });
   }
 };
 
 onMounted(async () => {
-  await getIndexPage()
-    .then((result) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log("失败了" + err);
-    });
-
+  let a = localStorage["localJsonIndex"];
+  if (a == undefined) {
+    await getIndexPage()
+      .then(({ data }) => {
+        DATA.value = data.data;
+        localStorage["localJsonIndex"] = JSON.stringify(data.data);
+      })
+      .catch((err) => {
+        console.log("失败了" + err);
+      });
+  } else {
+    DATA.value = JSON.parse(a);
+  }
   console.log(route.query.two);
   if (route.query.two) {
     onoffLoading.value = false;
