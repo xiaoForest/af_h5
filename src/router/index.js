@@ -3,8 +3,8 @@ import {
     createWebHashHistory
 } from 'vue-router'
 import Index from '@/views/index'
-import Deposite from '@/views/deposite/deposite'
-import DepositeDetails from '@/views/deposite/depositeDetails'
+import SecondaryPage from '@/views/secondaryPage/secondaryPage'
+import Details from '@/views/secondaryPage/Details'
 import Withdrawals from  '@/views/withdrawals/withdrawals'
 import Withdrawals1 from '@/views/withdrawals/withdrawals1'
 import Withdrawals2 from '@/views/withdrawals/withdrawals2'
@@ -22,14 +22,14 @@ const Router = createRouter({
             component: Index
         },
         {
-            path: '/deposite/deposite',
-            name: 'deposite',
-            component: Deposite
+            path: '/secondaryPage/secondaryPage',
+            name: 'secondaryPage',
+            component: SecondaryPage
         },
         {
-            path: '/deposite/depositeDetails',
-            name: 'depositeDetails',
-            component: DepositeDetails
+            path: '/secondaryPage/Details',
+            name: 'Details',
+            component: Details
         },
         {
             path: '/withdrawals/withdrawals',

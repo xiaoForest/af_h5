@@ -1,12 +1,6 @@
 
 <template>
-  <Loading
-    v-show="onoffLoading"
-    class="animate__animated"
-    :class="loadingChange ? '' : 'animate__slideOutLeft'"
-    ref="sonRef"
-    :change="onoffLoading"
-  />
+  <Loading ref="sonRef" />
   <section
     class="homeWrap container animate__animated"
     :class="loadingChange ? '' : 'animate__slideInRight'"
@@ -46,7 +40,7 @@
   </section>
 </template>
 <script setup>
-import { reactive, ref, onMounted, watch } from "vue";
+import { reactive, ref, onMounted, watchEffect } from "vue";
 import Loading from "@/components/loading.vue";
 import getSrc from "@/utils/getSrc.js";
 import { getIndexPage } from "@/api/api.js";
@@ -56,7 +50,7 @@ const router = useRouter();
 const route = useRoute();
 const sonRef = ref();
 const loadingChange = ref(true);
-const onoffLoading = ref(true);
+
 const DATA = ref([]);
 const list = ref([
   {
@@ -81,48 +75,54 @@ const list = ref([
   },
 ]);
 
-const goToSecondary = (item, name) => {
-  if (item.typeId == "jiaocun") {
-    router.push({
-      path: "/deposite/deposite",
-      query: {
-        id: item.typeId,
-      },
-    });
-  }
-  if (item.typeId == "tiqu") {
-    router.push({
-      path: "/withdrawals/withdrawals",
-      query: {
-        id: item.typeId,
-      },
-    });
-  }
-  if (item.typeId == "daikuan") {
-    router.push({
-      path: "/loans/loans",
-      query: {
-        id: item.typeId,
-      },
-    });
-  }
-  if (item.typeId == "jiuye") {
-    router.push({
-      path: "/employment/employment",
-      query: {
-        id: item.typeId,
-      },
-    });
-  }
-  if (item.typeId == "dizhi") {
-    router.push({
-      path: "/network/networkDetails",
-      query: {
-        id: item.typeId,
-      },
-    });
-  }
+const goToSecondary = (item) => {
+  router.push({
+    path: "/secondaryPage/secondaryPage",
+    query: {
+      id: item.typeId,
+    },
+  });
 };
+// if (item.typeId == "jiaocun") {
+//   router.push({
+//     path: "/secondaryPage/secondaryPage",
+//     query: {
+//       id: item.typeId,
+//     },
+//   });
+// }
+// if (item.typeId == "tiqu") {
+//   router.push({
+//     path: "/withdrawals/withdrawals",
+//     query: {
+//       id: item.typeId,
+//     },
+//   });
+// }
+// if (item.typeId == "daikuan") {
+//   router.push({
+//     path: "/loans/loans",
+//     query: {
+//       id: item.typeId,
+//     },
+//   });
+// }
+// if (item.typeId == "jiuye") {
+//   router.push({
+//     path: "/employment/employment",
+//     query: {
+//       id: item.typeId,
+//     },
+//   });
+// }
+// if (item.typeId == "dizhi") {
+//   router.push({
+//     path: "/network/networkDetails",
+//     query: {
+//       id: item.typeId,
+//     },
+//   });
+// }
 
 onMounted(async () => {
   let a = localStorage["localJsonIndex"];
@@ -137,20 +137,6 @@ onMounted(async () => {
     });
 
   DATA.value = JSON.parse(a);
-
-  console.log(route.query.two);
-  if (route.query.two) {
-    onoffLoading.value = false;
-    return false;
-  }
-  if (!onoffLoading) {
-    loadingChange.value = false;
-    return false;
-  } else {
-    watch(() => {
-      loadingChange.value = sonRef.value.onoff;
-    });
-  }
 });
 </script>
 

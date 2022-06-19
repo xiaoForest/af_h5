@@ -1,7 +1,7 @@
 
 <template>
   <section class="depositeWrap container">
-    <img class="bg" :src="getSrc('deposite_bg.jpg')" alt="" />
+    <img class="bg" :src="DATA.bgImage || ''" alt="" />
     <GuideFloat :pathName="'/'" />
     <div class="main">
       <div class="logoBox">
@@ -11,12 +11,12 @@
         <ul class="buttonList">
           <li
             class="item"
-            v-for="(item, index) in list"
+            v-for="(item, index) in DATA.pageData"
             :key="index"
             @click="goToSecondary(item)"
           >
             <div>
-              <span>{{ item.name }}</span>
+              <span>{{ (item.typeName) }}</span>
             </div>
           </li>
         </ul>
@@ -30,8 +30,10 @@ import { reactive, ref, onMounted, watch } from "vue";
 import GuideFloat from "@/components/guideFloat.vue";
 import getSrc from "@/utils/getSrc.js";
 import { Toast } from "vant";
-import { useRouter } from "vue-router";
+import { getPageInfo } from "@/api/api.js";
+import { useRouter, useRoute } from "vue-router";
 const router = useRouter();
+const route = useRoute();
 const sonRef = ref();
 const loadingChange = ref(true);
 const list = ref([
@@ -46,17 +48,31 @@ const list = ref([
 ]);
 
 const goToSecondary = (item) => {
-  if (item.name == "我是个人缴存") {
-    router.push({
-      path: "/deposite/depositeDetails",
-      query: {
-        id: item.id,
-      },
-    });
-  }
+  console.log("dff", item);
+  router.push({
+    path: "/SecondaryPage/Details",
+    query: {
+      id: item.typeId,
+    },
+  });
 };
+const DATA = ref([]);
+onMounted(async () => {
+  // let a = localStorage["localJsonInfo"];
+  let data = {
+    typeId: route.query.id,
+  };
+  await getPageInfo(data)
+    .then(({ data }) => {
+      DATA.value = data.data;
+      // localStorage["localJsonInfo"] = JSON.stringify(data.data);
+    })
+    .catch((err) => {
+      console.log("失败了" + err);
+    });
 
-onMounted(() => {});
+  // DATA.value = JSON.parse(a);
+});
 </script>
 
 <style lang="scss">

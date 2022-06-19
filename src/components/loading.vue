@@ -1,5 +1,8 @@
 <template>
-  <div class="LoadingWrap">
+  <div
+    class="LoadingWrap animate__animated"
+    :class="onoff ? '' : 'animate__slideOutLeft'"
+  >
     <div class="progressBox">
       <div class="Progress">
         <div class="bar"></div>
@@ -33,25 +36,25 @@ const clickHandle = (p) => {
   } else {
     let imgArr = [
       getSrc("logo.png"),
-      getSrc("deposite_bg.jpg"),
-      getSrc("deposite_details.jpg"),
-      getSrc("employment_bg.jpg"),
-      getSrc("feel_happy.png"),
-      getSrc("home.png"),
-      getSrc("home_0.jpg"),
-      getSrc("home_title.png"),
-      getSrc("loading.png"),
-      getSrc("loans_bg.jpg"),
-      getSrc("logo_white.png"),
-      getSrc("return.png"),
-      getSrc("withdrawals_bg.jpg"),
-      getSrc("withdrawals1_bg.jpg"),
-      getSrc("withdrawals2_bg.jpg"),
+      // getSrc("deposite_bg.jpg"),
+      // getSrc("deposite_details.jpg"),
+      // getSrc("employment_bg.jpg"),
+      // getSrc("feel_happy.png"),
+      // getSrc("home.png"),
+      // getSrc("home_0.jpg"),
+      // getSrc("home_title.png"),
+      // getSrc("loading.png"),
+      // getSrc("loans_bg.jpg"),
+      // getSrc("logo_white.png"),
+      // getSrc("return.png"),
+      // getSrc("withdrawals_bg.jpg"),
+      // getSrc("withdrawals1_bg.jpg"),
+      // getSrc("withdrawals2_bg.jpg"),
     ];
     loadImageEnd(imgArr, (i) => {
       let ld = setInterval(() => {
         num.value += defaultNum.value;
-        if (num.value >= 100) {
+        if (num.value >= 2) {
           clearInterval(ld);
           onoff.value = false;
           setTimeout(() => {

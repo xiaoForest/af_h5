@@ -5,7 +5,7 @@
   </div>
 </template>
 <script setup>
-import {  ref } from "vue";
+import { ref } from "vue";
 import getSrc from "@/utils/getSrc.js";
 import { useRouter } from "vue-router";
 const router = useRouter();
@@ -16,12 +16,13 @@ const props = defineProps({
 });
 
 const goBack = (pathName) => {
-  router.push({
-    path: pathName,
-    query: {
-      two: false,
-    },
-  });
+  // router.push({
+  //   path: pathName,
+  //   query: {
+  //     two: false,
+  //   },
+  // });
+  router.go(-1);
 };
 const goHome = () => {
   router.push({

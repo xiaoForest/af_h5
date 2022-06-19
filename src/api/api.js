@@ -47,4 +47,10 @@ const resquest = "http://gzgjj.xhwxpos.com:8002/"
 export function getIndexPage() {
     return http.get(`${resquest}page/getIndexPage`)
 }
+export function getPageInfo(params) {
+    return http.get(`${resquest}page/getPageInfo`,{
+        ...params
+    })
+}
+ 
  
