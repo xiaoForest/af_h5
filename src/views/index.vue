@@ -126,18 +126,18 @@ const goToSecondary = (item, name) => {
 
 onMounted(async () => {
   let a = localStorage["localJsonIndex"];
-  if (a == undefined) {
-    await getIndexPage()
-      .then(({ data }) => {
-        DATA.value = data.data;
-        localStorage["localJsonIndex"] = JSON.stringify(data.data);
-      })
-      .catch((err) => {
-        console.log("失败了" + err);
-      });
-  } else {
-    DATA.value = JSON.parse(a);
-  }
+
+  await getIndexPage()
+    .then(({ data }) => {
+      DATA.value = data.data;
+      localStorage["localJsonIndex"] = JSON.stringify(data.data);
+    })
+    .catch((err) => {
+      console.log("失败了" + err);
+    });
+
+  DATA.value = JSON.parse(a);
+
   console.log(route.query.two);
   if (route.query.two) {
     onoffLoading.value = false;
