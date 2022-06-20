@@ -15,7 +15,7 @@
       <div class="middleBox">
         <ul class="buttonList">
           <li
-            class="item"
+            class="item mb40"
             v-for="(item, index) in DATA.pageData"
             :key="index"
             @click="goToSecondary(item)"
