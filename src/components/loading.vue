@@ -54,7 +54,7 @@ const clickHandle = (p) => {
     loadImageEnd(imgArr, (i) => {
       let ld = setInterval(() => {
         num.value += defaultNum.value;
-        if (num.value >= 100) {
+        if (num.value >= 2) {
           clearInterval(ld);
           onoff.value = false;
           setTimeout(() => {

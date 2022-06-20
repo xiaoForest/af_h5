@@ -1,13 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+  <script>
+    var Debug = ''//'?debug=1&openid=o-WGWwrmdn9Wf1VwdfumyG6oB4Eo'
+    var url = 'http://gzgjj.xhwxpos.com:8002/server/getShareSignature';
+    var post_url = encodeURIComponent(window.location.href)
+
+    $.post(url, { 'url': post_url }, function (e) {
+      if (e.status == '303') {
+        // window.location.href = e.url + post_url;
+      }
+      if (e.status == '0') {
+        var title = e.data.title
+        var desc = e.data.desc
+        var link = e.data.url
+        var imgUrl = e.data.imgUrl
+        // $(document).attr('title', title)
+        wx.config({
+          debug: false,
+          appId: e.data.signPackage.appId,
+          timestamp: e.data.signPackage.timestamp,
+          nonceStr: e.data.signPackage.nonceStr,
+          signature: e.data.signPackage.signature,
+          jsApiList: [
+            // 所有要调用的 API 都要加到这个列表中
+            'checkJsApi',
+            'onMenuShareTimeline',
+            'onMenuShareAppMessage',
+            'onMenuShareQQ',
+            'onMenuShareWeibo',
+            'startRecord',
+            'stopRecord',
+            'onVoiceRecordEnd',
+            'playVoice',
+            'pauseVoice',
+            'stopVoice',
+            'onVoicePlayEnd',
+            'uploadVoice',
+            'downloadVoice',
+            'chooseImage',
+            'previewImage',
+            'uploadImage',
+            'downloadImage',
+            'translateVoice',
+            'getNetworkType',
+            'openLocation',
+            'getLocation',
+            'hideOptionMenu',
+            'showOptionMenu',
+            'hideMenuItems',
+            'showMenuItems',
+            'hideAllNonBaseMenuItem',
+            'showAllNonBaseMenuItem',
+            'closeWindow',
+            'scanQRCode'
+          ]
+        })
+
+        wx.ready(function () {
+          wx.showOptionMenu()
+
+          wx.hideMenuItems({
+            menuList: [
+              'menuItem:copyUrl',
+              'menuItem:openWithQQBrowser',
+              'menuItem:openWithSafari',
+              'menuItem:share:email'
+            ] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+          })
+
+          shareHandle(title, link, imgUrl, desc)
+        })
+
+        function shareHandle(title, link, imgUrl, desc) {
+          // 在这里调用 API
+          //分享到朋友圈
+          wx.onMenuShareTimeline({
+            title: title, // 分享标题
+            link: link, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () { },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+            }
+          })
+          //分享给朋友
+          wx.onMenuShareAppMessage({
+            title: title, // 分享标题
+            desc: desc, // 分享描述
+            link: link, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () { },
+            cancel: function () {
+              // 用户取消分享后执行的回调函数
+            }
+          })
+        }
+      }
+    }, 'json');
+  </script>
+</body>
+
 </html>

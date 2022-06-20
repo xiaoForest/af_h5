@@ -1,7 +1,12 @@
 
 <template>
   <section class="depositeWrap container">
-    <img class="bg" :src="getSrc('deposite_details.jpg')" alt="" />
+    <img
+      :class="!DATA.bgImage ? 'hide' : 'animate__fadeIn'"
+      class="bg animate__animated"
+      :src="DATA.bgImage"
+      alt=""
+    />
     <GuideFloat :pathName="'/secondaryPage/secondaryPage'" />
     <div class="main">
       <div class="logoBox">
@@ -89,9 +94,22 @@ onMounted(async () => {
         font-size: 28px;
         line-height: 1.6;
         margin-bottom: 20px;
+        font-weight: bold;
         strong {
+          position: relative;
           margin-bottom: 10px;
           font-weight: bold;
+          &:after {
+            width: calc(100% - 1em);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            content: "";
+            height: 10px;
+            background: #53a2ff;
+            border-radius: 10px;
+            z-index: -1;
+          }
         }
       }
     }

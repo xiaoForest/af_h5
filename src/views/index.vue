@@ -5,7 +5,12 @@
     class="homeWrap container animate__animated"
     :class="loadingChange ? '' : 'animate__slideInRight'"
   >
-    <img class="bg" :src="DATA.bgImage || getSrc('home_0.jpg')" alt="" />
+    <img
+      class="bg animate__animated"
+      :class="!DATA.bgImage ? 'hide' : 'animate__fadeIn'"
+      :src="DATA.bgImage"
+      alt=""
+    />
     <div class="main">
       <div
         class="logoBox animate__animated animate__fadeInUp animate__delay-05s"
@@ -31,7 +36,7 @@
       <div
         class="
           happyBox
-          animate__animated animate__zoomInRight animate__delay-05s
+          animate__animated animate__bounceInRight animate__delay-05s
         "
       >
         <img class="feel_happy" :src="getSrc('feel_happy.png')" />
@@ -76,53 +81,25 @@ const list = ref([
 ]);
 
 const goToSecondary = (item) => {
-  router.push({
-    path: "/secondaryPage/secondaryPage",
-    query: {
-      id: item.typeId,
-    },
-  });
+  // sceneType 场景类型 IndexPage首页  SecondPage次级首页  InfoPage信息页
+
+  if (item.sceneType == "SecondPage") {
+    router.push({
+      path: "/secondaryPage/secondaryPage",
+      query: {
+        id: item.typeId,
+      },
+    });
+  }
+  if (item.sceneType == "InfoPage") {
+    router.push({
+      path: "/SecondaryPage/Details",
+      query: {
+        id: item.typeId,
+      },
+    });
+  }
 };
-// if (item.typeId == "jiaocun") {
-//   router.push({
-//     path: "/secondaryPage/secondaryPage",
-//     query: {
-//       id: item.typeId,
-//     },
-//   });
-// }
-// if (item.typeId == "tiqu") {
-//   router.push({
-//     path: "/withdrawals/withdrawals",
-//     query: {
-//       id: item.typeId,
-//     },
-//   });
-// }
-// if (item.typeId == "daikuan") {
-//   router.push({
-//     path: "/loans/loans",
-//     query: {
-//       id: item.typeId,
-//     },
-//   });
-// }
-// if (item.typeId == "jiuye") {
-//   router.push({
-//     path: "/employment/employment",
-//     query: {
-//       id: item.typeId,
-//     },
-//   });
-// }
-// if (item.typeId == "dizhi") {
-//   router.push({
-//     path: "/network/networkDetails",
-//     query: {
-//       id: item.typeId,
-//     },
-//   });
-// }
 
 onMounted(async () => {
   let a = localStorage["localJsonIndex"];

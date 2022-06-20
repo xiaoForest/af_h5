@@ -1,7 +1,12 @@
 
 <template>
   <section class="depositeWrap container">
-    <img class="bg" :src="DATA.bgImage || ''" alt="" />
+    <img
+      class="bg animate__animated"
+      :class="!DATA.bgImage ? 'hide' : 'animate__fadeIn'"
+      :src="DATA.bgImage"
+      alt=""
+    />
     <GuideFloat :pathName="'/'" />
     <div class="main">
       <div class="logoBox">
@@ -16,7 +21,7 @@
             @click="goToSecondary(item)"
           >
             <div>
-              <span>{{ (item.typeName) }}</span>
+              <span>{{ item.typeName }}</span>
             </div>
           </li>
         </ul>
@@ -48,19 +53,31 @@ const list = ref([
 ]);
 
 const goToSecondary = (item) => {
-  console.log("dff", item);
-  router.push({
-    path: "/SecondaryPage/Details",
-    query: {
-      id: item.typeId,
-    },
-  });
+  // sceneType 场景类型 IndexPage首页  SecondPage次级首页  InfoPage信息页
+
+  if (item.sceneType == "SecondPage") {
+    secondaryPageJson(item.typeId);
+    // router.push({
+    //   path: "/secondaryPage/secondaryPage",
+    //   query: {
+    //     id: item.typeId,
+    //   },
+    // });
+  }
+  if (item.sceneType == "InfoPage") {
+    router.push({
+      path: "/SecondaryPage/Details",
+      query: {
+        id: item.typeId,
+      },
+    });
+  }
 };
 const DATA = ref([]);
-onMounted(async () => {
+const secondaryPageJson = async (e) => {
   // let a = localStorage["localJsonInfo"];
   let data = {
-    typeId: route.query.id,
+    typeId: e || route.query.id,
   };
   await getPageInfo(data)
     .then(({ data }) => {
@@ -72,9 +89,11 @@ onMounted(async () => {
     });
 
   // DATA.value = JSON.parse(a);
+};
+onMounted(() => {
+  secondaryPageJson();
 });
 </script>
 
 <style lang="scss">
-
 </style>

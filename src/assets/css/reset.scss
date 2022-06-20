@@ -107,6 +107,7 @@ section {
 }
 body {
 	line-height: 1;
+	--van-skeleton-row-height: 40px;
 }
 ol,
 ul {
@@ -127,7 +128,7 @@ ul {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #fff;
+	background: linear-gradient(0, #d8fcf7, #a9f3ff);
 	z-index: 99;
 	.main {
 		position: fixed;
@@ -223,4 +224,10 @@ ul {
 }
 .mb10 {
 	margin-bottom: 10px !important;
+}
+.hide {
+	display: none;
+}
+.show {
+	display: block;
 }
