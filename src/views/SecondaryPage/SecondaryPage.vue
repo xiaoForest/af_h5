@@ -31,12 +31,12 @@
   </section>
 </template>
 <script setup>
-import { reactive, ref, onMounted, watch } from "vue";
+import { reactive, ref, onMounted, watchEffect } from "vue";
 import GuideFloat from "@/components/guideFloat.vue";
 import getSrc from "@/utils/getSrc.js";
 import { Toast } from "vant";
 import { getPageInfo } from "@/api/api.js";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter, useRoute, onBeforeRouteUpdate } from "vue-router";
 const router = useRouter();
 const route = useRoute();
 const sonRef = ref();
@@ -51,12 +51,16 @@ const list = ref([
     name: "我是单位缴存职工",
   },
 ]);
-
+onBeforeRouteUpdate((to) => {
+  secondaryPageJson(to.query.id);
+});
 const goToSecondary = (item) => {
   // sceneType 场景类型 IndexPage首页  SecondPage次级首页  InfoPage信息页
-
   if (item.sceneType == "SecondPage") {
     secondaryPageJson(item.typeId);
+    router.push({
+      query: (route.query, { id: item.typeId }),
+    });
   }
   if (item.sceneType == "InfoPage") {
     router.push({
@@ -68,6 +72,7 @@ const goToSecondary = (item) => {
   }
 };
 const DATA = ref([]);
+
 const secondaryPageJson = async (e) => {
   // let a = localStorage["localJsonInfo"];
   let data = {
@@ -85,7 +90,7 @@ const secondaryPageJson = async (e) => {
   // DATA.value = JSON.parse(a);
 };
 onMounted(() => {
-  secondaryPageJson();
+  secondaryPageJson(route.query.id);
 });
 </script>
 
