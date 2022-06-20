@@ -27,9 +27,7 @@ const goBack = (pathName) => {
 const goHome = () => {
   router.push({
     path: "/",
-    query: {
-      two: false,
-    },
+    query: {},
   });
 };
 defineExpose({});
