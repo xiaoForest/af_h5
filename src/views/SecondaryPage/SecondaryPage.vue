@@ -57,12 +57,6 @@ const goToSecondary = (item) => {
 
   if (item.sceneType == "SecondPage") {
     secondaryPageJson(item.typeId);
-    // router.push({
-    //   path: "/secondaryPage/secondaryPage",
-    //   query: {
-    //     id: item.typeId,
-    //   },
-    // });
   }
   if (item.sceneType == "InfoPage") {
     router.push({
