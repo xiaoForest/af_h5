@@ -23,8 +23,8 @@ export default defineConfig({
   ],
   base: '',
   server: {
-    open: true,
-    port: 3002
+    open: false,
+    port: 3000
   },
   resolve: {
     // 配置路径别名

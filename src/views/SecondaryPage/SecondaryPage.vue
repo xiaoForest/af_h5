@@ -76,6 +76,5 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
-.depositeWrap {
-}
+
 </style>

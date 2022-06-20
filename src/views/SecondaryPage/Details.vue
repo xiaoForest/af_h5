@@ -7,6 +7,17 @@
       <div class="logoBox">
         <img class="logo" :src="getSrc('logo_white.png')" alt="" />
       </div>
+      <div class="detailsWrap">
+        <div class="title">{{ DATA.typeName }}</div>
+        <div class="ul">
+          <div class="li" v-for="(i, index) in DATA.subType" :key="index">
+            <div class="text" v-for="(z, n) in i.subTitle" :key="n">
+              <strong>{{ z.titleName }}</strong>
+              <span v-html="z.titleInfo"></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -54,6 +65,36 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
-.depositeWrap {
+.detailsWrap {
+  height: 70%;
+  width: 100%;
+  text-align: left;
+  .title {
+    font-size: 30px;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #0f3793;
+    display: inline-block;
+    padding: 6px 20px;
+  }
+  .ul {
+    padding: 20px;
+    .li {
+      img {
+        max-width: 100% !important;
+        height: auto !important;
+      }
+      .text {
+        text-align: justify;
+        font-size: 28px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        strong {
+          margin-bottom: 10px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
 </style>
