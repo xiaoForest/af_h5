@@ -55,7 +55,7 @@ onBeforeRouteUpdate((to) => {
   secondaryPageJson(to.query.id);
 });
 const goToSecondary = (item) => {
-  // sceneType 场景类型 IndexPage首页  SecondPage次级首页  InfoPage信息页
+  // sceneType 场景类型 IndexPage首页  SecondPage次 级首页  InfoPage信息页
   if (item.sceneType == "SecondPage") {
     secondaryPageJson(item.typeId);
     router.push({
